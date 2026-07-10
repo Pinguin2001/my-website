@@ -1,0 +1,493 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="description" content="Julian Hasreiter's website"><meta name="viewport" content="width=device-width"><meta name="referrer" content="no-referrer"><meta name="generator" content="Astro v7.0.6"><link rel="icon" type="image/png" href="/favicon.png"><title>Julian's site - Thor2 documentaiton</title><style>body{font-optical-sizing:auto;color:#ece3e3;background-color:#202020;max-width:900px;margin:10px auto auto;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;font-size:18px;font-style:normal}@media (width<=910px){body{margin-left:15px;margin-right:15px}}a:link{color:inherit;font-style:normal}a:visited{color:inherit}::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:0 0}::-webkit-scrollbar-thumb{background:#787878}::-webkit-scrollbar-thumb:hover{background:#b1b1b1}div[data-astro-cid-psuqyn7k],a[data-astro-cid-psuqyn7k]{align-items:center;display:flex}
+</style></head><body><div data-astro-cid-psuqyn7k><a href="../" data-astro-cid-psuqyn7k><svg width="32" height="32" fill="none" viewBox="0 0 24 24" data-astro-cid-psuqyn7k="true"><path fill="#fff" d="m12.28 16.532.073-.084a.75.75 0 0 0-.073-.977l-2.72-2.72h6.69l.102-.006A.75.75 0 0 0 17 12l-.006-.101a.75.75 0 0 0-.744-.649H9.56l2.722-2.72.072-.084a.75.75 0 0 0-1.133-.977l-4.001 4-.073.084a.75.75 0 0 0 .073.977l4 4 .085.073a.75.75 0 0 0 .976-.072ZM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2m0 18.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17" /></svg></a><p style="margin-left: 5px;" data-astro-cid-psuqyn7k>Thor2 documentaiton</p></div><h1 id="thor2-documentation">Thor2 documentation</h1>
+<p>CAUTION: This documentation has been adapted to Markdown for your convience. When flashing, modifying or backing up your Microsoft Mobile or Nokia device, you are the one choosing to make modifications to your device and only you are responsible.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">Usage: thor2 -mode [MODE] -[ARGUMENT]... -[FLAG]...</span></span></code></pre>
+<p>Thor2 aims to provide SW update and miscellaneous R&amp;D operations for WP8 products, Alpha, Collins, Theta, Quattro and Romulus engines.</p>
+<h2 id="modes">MODEs:</h2>
+<p>Sets mode of operation. Modes are emergency, uefiflash, sdflash, vpl, dump, rnd, retail, ffureader, list_connections and uefiserialflash.</p>
+<h2 id="arguments">ARGUMENTs:</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -ffufile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to FFU file</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -sdfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                    Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to SD file</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -vplfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to VPL file</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -conn </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">connection</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                    Sets connection endpoint/identifier. E.g. COMx in Windows (where x is number).</span></span>
+<span class="line"><span style="color:#E1E4E8">                                        Connection ID notation is controllerID:hub:port. Like 0.0200.0003.0100:0004:0002</span></span>
+<span class="line"><span style="color:#E1E4E8">                                        Controller ID notation is the value of each sub strings of PCI of Device Location Paths USB property.</span></span>
+<span class="line"><span style="color:#E1E4E8">                                        The values of PCI sub strings are concatenated into resulting value separated by comma.</span></span>
+<span class="line"><span style="color:#F97583">                                        For</span><span style="color:#E1E4E8"> example PCIROOT(0)#PCI(0200)#PCI(0003)#PCI(0100)#USBROOT(0)#USB(1)#USB(5)#USB(6)#USB(1) results 0.0200.0003.0100 as controllerID.</span></span>
+<span class="line"><span style="color:#F97583">                                        If</span><span style="color:#E1E4E8"> omitted, THOR2 tries to auto-detect a connected device.</span></span>
+<span class="line"><span style="color:#E1E4E8">                                        Use list_connections </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> to findout connected device along connection IDs.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -logfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets custom log file </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> THOR2 traces</span></span></code></pre>
+<h3 id="arguments-for-emergency-mode">arguments for emergency mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -configfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to </span><span style="color:#79B8FF">8974</span><span style="color:#E1E4E8"> emergency download configuration file (file should be in XML format).</span></span>
+<span class="line"><span style="color:#E1E4E8">                                        All references to binary files in the configuration file should be located in the same directory.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -protocol </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">prot</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                      Forces usage of specific emergency download protocol. Supported protocols: sahara ( Quattro/Romulus ) and streaming ( Collins / Alpha as default )</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -mbnfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to mbn file</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -hexfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to QComm HEX flasher file</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -dumpfileforhexflasher </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">     Sets the </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to dump file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -dumparea </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">first sector to read,amount of sectors to read</span><span style="color:#F97583">></span></span></code></pre>
+<h3 id="arguments-for-uefiflash-mode">arguments for uefiflash mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -partitionname </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">partition name</span><span style="color:#F97583">></span><span style="color:#E1E4E8">       Sets partition name of the GPT to program to.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -partitionimagefile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">        Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to partition image file to be programmed into the device.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -imagefile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                 Sets image file to be programmed into the device.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -startsector </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">first sector to flash</span><span style="color:#F97583">></span><span style="color:#E1E4E8">  Sets number of sector from flashing of image begins.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -productcodeupdate </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">CTR code</span><span style="color:#F97583">></span><span style="color:#E1E4E8">         Updates product code after successful programming. RM-820 is out-scoped.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -looptest </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">loopCounter</span><span style="color:#F97583">></span><span style="color:#E1E4E8">               Tests FFU programming in a loop while staying in the flash </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> between programming trials.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -timeout </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">time in seconds</span><span style="color:#F97583">></span><span style="color:#E1E4E8">            Waiting </span><span style="color:#F97583">time</span><span style="color:#E1E4E8"> of device to appear.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -maxtransfersizekb </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">block size in kb</span><span style="color:#F97583">></span><span style="color:#E1E4E8">         Max programming block size.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -dplfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to DPL file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -batterylevel </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">value</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                 Sets minimum battery level that flashing starts.</span></span></code></pre>
+<h3 id="arguments-for-uefiserialflash-mode">arguments for uefiserialflash mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -serialflash </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">loopCounter</span><span style="color:#F97583">></span><span style="color:#E1E4E8">            FFU programming of multiple of devices. Multiple of devices can be programmed in serial one after one.</span></span></code></pre>
+<h3 id="arguments-for-dump-mode">arguments for dump mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -uefifile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                  Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to UEFI file to be loaded into the device.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -partitionname </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">name</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                 Sets name of partition to be read out from the device.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -dumparea </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">first sector to read,amount of sectors to read</span><span style="color:#F97583">></span></span></code></pre>
+<h3 id="arguments-for-rnd-mode">arguments for rnd mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -gptfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to GPT image file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -rawmsgreq  </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">hex message</span><span style="color:#F97583">></span><span style="color:#E1E4E8">             Message to be send to the device in hexadecimal. Messaging protocol could be NOK, JSON or user defined.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -rawmsgresp </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">hex message</span><span style="color:#F97583">></span><span style="color:#E1E4E8">             Expected response message to '-rawmsgreq </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">hex message</span><span style="color:#F97583">></span><span style="color:#E1E4E8">' request message. Returns a zero (0) </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> match between request and response.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -asciimsgreq  </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">ascii message</span><span style="color:#F97583">></span><span style="color:#E1E4E8">         Message to be send to the device in ASCII. Messaging protocol could be NOK, JSON or user defined.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -jsonfile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                  Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to JSON file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -asciimsgresp </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">ascii message</span><span style="color:#F97583">></span><span style="color:#E1E4E8">         Expected response message to '-asciimsgreq </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">ascii message</span><span style="color:#F97583">></span><span style="color:#E1E4E8">' request message. Returns a zero (0) </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> match between request and response.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_authentication -sdauthenticationtype </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">production</span><span style="color:#F97583">|</span><span style="color:#E1E4E8">tucson</span><span style="color:#F97583">></span><span style="color:#E1E4E8">.</span></span></code></pre>
+<h3 id="arguments-for-retail-mode">arguments for retail mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -nvifile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to NVI file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -writerdc </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                  Writes RDC from the given file to the device.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -readrdc </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Reads RDC to the given file from device.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -erasepartition </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">name</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                Sets name of partition to be erased from the device.</span></span></code></pre>
+<h3 id="arguments-for-ffureader-mode">arguments for ffureader mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -partitionimagefile </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">filepath</span><span style="color:#F97583">></span><span style="color:#E1E4E8">        Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to partition image file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -filedir </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">dir path</span><span style="color:#F97583">></span><span style="color:#E1E4E8">                   Sets </span><span style="color:#F97583">path</span><span style="color:#E1E4E8"> to directory, </span><span style="color:#F97583">where</span><span style="color:#E1E4E8"> files are dumped.</span></span></code></pre>
+<h2 id="flags">FLAGs:</h2>
+<h3 id="flags-for-emergency-mode">flags for emergency mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -skipprotocoldetection        Skips automatic detection of emergency protocol when connection is opened. Can be used in conjunction</span></span>
+<span class="line"><span style="color:#E1E4E8">                                with argument </span><span style="color:#9ECBFF">"-protocol sahara"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skipffuflash                 Skips FFU flashing </span><span style="color:#F97583">at</span><span style="color:#E1E4E8"> the end of emergency download</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skippayloadsending           Skips payload sending of rnd emergency download</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -use_legacy_hex               Collins and Alpha emergency. Uses legacy HEX flasher.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -orig_gpt                     Collins and Alpha emergency. Programs MBN image.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -debug                        Enables raw message tracing (during Sahara protocol stage)</span></span></code></pre>
+<h3 id="flags-for-uefiflash-mode">flags for uefiflash mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -skip_write                   Secure FFU flashing. Programming sequence executed without programming to the storage device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_hash                    Secure FFU flashing. Skips the hash calculation of the payload data.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_id_check                Secure FFU flashing. Skips Platform ID check between the device and FFU file.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_signature_check         Secure FFU flashing. Skips signature check of secure header of FFU file.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_reboot_on_failure       Secure FFU flashing. Skips reboot option </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> flashing fails.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_factory_reset             Restores Modem FSG partition to Modem FS1 and erases Modem FS2.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -verify_write                 Secure FFU flashing. Normal programming sequence executed followed by read and verify.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -detect_device_after_reboot   Detects device after reboot.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -disable_msg_timeout          Secure FFU flashing. Disables messaging </span><span style="color:#F97583">timeout</span><span style="color:#E1E4E8"> of UEFI FlashApp</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_flash                   Secure FFU flashing. Boots to the UEFI FlashApp without programming</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_rkh_check               Secure FFU flashing. Skips the Root Key Hash check between the device and FFU file</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -use_crc_in_sffu_prog         Secure FFU flashing. CRC32 is used to check integrity of the payload data</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -erase_data                   Secure FFU flashing. Erases the Data partition a.k.a UDA of Windows Phone</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_preserve_dpp            Skips overwriting prevention of DPP partition. By default programming will fail </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> the DPP partition of FFU file contains data.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -reboot                       Reboots the device, </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> possible</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -power_off                    Powers off the device after the USB cable is disconnected.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -sync_msging_sffu_prog        Secure FFU flashing. Uses sync messaging between PC and device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_full_nvi_update           Applies the full NVI settings after successful programming. During the first boot after programming the NVI updater updates the NV items.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -unbufferedfileio             Use unbuffered file I/O in case of SFFU programming. Aims to fix issues </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> FFU file is programmed from a network share.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_backup_restore          Secure FFU flashing. Skips backup and restore. By default backups of MODEM_FSG, MODEM_FS1, MODEM_FS2, SSD and</span></span>
+<span class="line"><span style="color:#E1E4E8">                                DPP partitions to the RAM of device and restores them after successful programming of Windows Phone.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -show_detailed_progress       Shows detailed progress info (transferred bytes and transfer speed).</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -trace_usb                    Prints out debugging traces of WinUSB client.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -use_boot_to_flsapp_json      Re-boots device into the flash </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> from the normal/test mode.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_exit_on_post_op_failure Executes all specified post flash operations (factory reset, full NVI update etc.), even </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> failures occur.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -restorepartition             Restores backup partition into the eMMC.</span></span></code></pre>
+<h3 id="flags-for-dump-mode">flags for dump mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -dump_via_gpt                 Reads out the content of eMMC of Windows Phone. The reading is based on the GPT of device.</span></span>
+<span class="line"><span style="color:#E1E4E8">                                This is excluded from the official Uefi FlashApp.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -dump_via_sector              Reads out the content of eMMC of Windows Phone. The reading is based on -dumparea argument.</span></span>
+<span class="line"><span style="color:#E1E4E8">                                This is excluded from the official Uefi FlashApp.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_read                    Skips read in case of reading out the content of eMMC of Windows Phone.</span></span>
+<span class="line"><span style="color:#E1E4E8">                                This enables to load and execute an UEFI app from PC to device.</span></span></code></pre>
+<h3 id="flags-for-rnd-mode">flags for rnd mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -bootmsc                      Boots the device into the USB mass storage mode.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -detect_device_after_reboot   Detects device after reboot.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readjtagserial               Reads serial number of JTAG.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -bootmmos                     Boots the device into the MMOS.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -normalmode                   Operations are done in the normal </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> of device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -uefitests                    Tests DSS UEFI apps of device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -delgpt                       Clears the GPT of device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_gpt_check               The R</span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8">D </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> validates the GPT. Use this flag to skip the check.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -bootflashapp                 Boots to UEFI Flash App.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -bootphoneinfoapp             Boots to UEFI Phone Info App.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -boot_edmode                  Boots to Emergency Download mode.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -read_public_id               Reads public ID from the device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -power_off                    Powers off the device after the USB cable is disconnected.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -read_charging_status         Reads charging status from the device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -read_final_config            Reads final config from the device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -skip_com_scan                Skips scanning of COM ports.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -reboot                       Reboots the device, </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> possible</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_rpmb                      Executes RPMB provisioning procedure.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_uefikeys_rd               Executes UEFI Keys provisioning procedure </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> RD.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_uefikeys_prod             Executes UEFI Keys provisioning procedure </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> production.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -dump_gpt                     Executes parsing of GPT image file.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -flashappbuildinfo            Reads build related information about the UEFI flash application.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -uefisecurebootinfo           Reads information about the UEFI secure boot.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readphoneinfo                Reads Phone info.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -continueboot                 Continue boot.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readdeviceinfo               Reads miscellaneous information from device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readrpmbstatus               Read RPMB provisioning status.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readisswversion              Reads ISSW version and compilation info.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -do_factory_reset             Restores Modem FSG partition to Modem FS1 and erases Modem FS2.</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">  -do_authentication            Authenticates device. The default authentication level is</span></span>
+<span class="line"><span style="color:#E1E4E8">                                production. Level can be changed by argument sdauthenticationtype.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -bootlumiabootmgr             (Re-)Boots to Boot Manager.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -bootnormalmode               Boots to the normal </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> / Windows Phone OS.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -dump_mbn                     Chops up MBN image into files according to the GPT of MBN image.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readcid                      Reads card identification of eMMC, manufacturer, OID and PSN.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -validatessdhash              Validates SSD integrity.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -relock                       GDR3 devices which have been retail unlocked with MSFT packages</span></span>
+<span class="line"><span style="color:#E1E4E8">                                are </span><span style="color:#F97583">not</span><span style="color:#E1E4E8"> booting </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> Blue SW is updated via FFU flashing.</span></span>
+<span class="line"><span style="color:#E1E4E8">                                Re-lock operation should be done prio to flashing Blue FFU.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -oddt                         Connection created to ODDT Control, </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> it is found.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -readramsize                  Reads size of system memory.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -read_reset_protection_status Reads status of reset protection.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -remove_sbcp                  Removes secure boot configuration policy.</span></span></code></pre>
+<h3 id="flags-for-retail-mode">flags for retail mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -reboot                       Reboots the device, </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> possible</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -eraserdc                     Erases the RDC from the device.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -power_off                    Powers off the device after the USB cable is disconnected.</span></span></code></pre>
+<h3 id="flags-for-uefiserialflash-mode">flags for uefiserialflash mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -power_off                    Powers off the device after the USB cable is disconnected.</span></span></code></pre>
+<h3 id="flags-for-ffureader-mode">flags for ffureader mode</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">  -dump_gpt                     Dumps GPT(s) from FFU file.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -dump_partitions              Dumps partitions into files according to the GPT of FFU file.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  -read_antitheft_version       Reads only antitheft version from FFU file.</span></span></code></pre>
+<h2 id="miscellaneous">miscellaneous</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>  Thor2 supports drag and drop. The basic flashing can be done by drag&#x26;drop ffu file over the thor2.exe.</span></span>
+<span class="line"><span>  If thor2 shortcut is added to SendTo menu, you can flash ffu file by sending it to thor2.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  -skip_logfile                 Skips logfile creation.</span></span>
+<span class="line"><span>  -mode userauthentication -passcode securitycode [-server saisec001] [-securesessionfile mysession.bin ]       Authentication with VIP Access, creates user's securesessionid file</span></span>
+<span class="line"><span>  /?                            Displays this help and exits.</span></span>
+<span class="line"><span>  --help                        Displays this help and exits.</span></span>
+<span class="line"><span>  --help -mode [ MODE ]         Displays examples according to defined mode and exits.</span></span>
+<span class="line"><span>  --version                     Displays version information and exits.</span></span></code></pre>
+<h2 id="examples">examples</h2>
+<h3 id="uefiflash-examples">Uefiflash examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">SFFU programming:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">SFFU programming and product code update:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -productcodeupdate </span><span style="color:#79B8FF">01234567</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">SFFU programming and Full NVI update:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -do_full_nvi_update -do_factory_reset</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">SFFU programming along product code and Full NVI updates:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -productcodeupdate </span><span style="color:#79B8FF">01234567</span><span style="color:#E1E4E8"> -do_full_nvi_update -do_factory_reset -reboot</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">SFFU programming and battery level check:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -batterylevel </span><span style="color:#79B8FF">10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Partition programming. Programs uefi.mbn partition image file into uefi partition:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -partitionname uefi -partitionimagefile </span><span style="color:#9ECBFF">"uefi.mbn"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Image programming. Programs GPT:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -startsector </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> -imagefile </span><span style="color:#9ECBFF">"gpt.bin"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Partition programming. Programs sbl1.mbn partition image file into sbl1 partition:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -partitionname sbl1 -partitionimagefile </span><span style="color:#9ECBFF">"sbl1.mbn"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Partition restoring. Restores dpp.mbn partition image file into dpp partition:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -partitionname dpp -partitionimagefile </span><span style="color:#9ECBFF">"dpp.mbn"</span><span style="color:#E1E4E8"> -restorepartition -skip_gpt_check</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">MMOS programming:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -mmosfile </span><span style="color:#9ECBFF">"mmos.wim"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">MMOS programming according to DPL file:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiflash -dplfile </span><span style="color:#9ECBFF">"DPL_RM974.xml"</span></span></code></pre>
+<h3 id="emergency-examples">Emergency examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">Emergency and SFFU programming </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> Quattro and Romulus:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -configfile </span><span style="color:#9ECBFF">"emergency_config.xml"</span><span style="color:#E1E4E8"> -ffufile </span><span style="color:#9ECBFF">"Production_flash.ffu"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Emergency programming </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> Quattro and Romulus:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -configfile </span><span style="color:#9ECBFF">"8974_emergency_config.xml"</span><span style="color:#E1E4E8"> -ffufile </span><span style="color:#9ECBFF">"QUMA_Production_flash.ffu"</span><span style="color:#E1E4E8"> -skipffuflash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Emergency and SFFU programming </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> Quattro and Romulus ( RnD ) :</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -hexfile </span><span style="color:#9ECBFF">"MPRG8974_fh_v1_0.mbn"</span><span style="color:#E1E4E8"> -edfile </span><span style="color:#9ECBFF">"RM937_1025.0001.1.1.ed"</span><span style="color:#E1E4E8"> -ffufile </span><span style="color:#9ECBFF">"Production_flash.ffu"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Emergency and SFFU programming </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> Collins and Alpha:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -hexfile </span><span style="color:#9ECBFF">"FAST8960.hex"</span><span style="color:#E1E4E8"> -mbnfile </span><span style="color:#9ECBFF">"8960_msimage_uefi.mbn"</span><span style="color:#E1E4E8"> -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Emergency programming </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> Collins and Alpha ( GPT from FFU file ):</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -hexfile </span><span style="color:#9ECBFF">"FAST8960.hex"</span><span style="color:#E1E4E8"> -mbnfile </span><span style="color:#9ECBFF">"8960_msimage_uefi.mbn"</span><span style="color:#E1E4E8"> -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -skipffuflash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Emergency programming </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> Collins and Alpha ( MBN file only ):</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -hexfile </span><span style="color:#9ECBFF">"FAST8960.hex"</span><span style="color:#E1E4E8"> -mbnfile </span><span style="color:#9ECBFF">"8960_msimage_uefi.mbn"</span><span style="color:#E1E4E8"> -orig_gpt</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads content of eMMC with HEX flasher. The dump area is in sectors; first_sector_to_read,amount_of_sectors_to_read. Size of one sector is </span><span style="color:#79B8FF">512</span><span style="color:#E1E4E8"> bytes.</span></span>
+<span class="line"><span style="color:#E1E4E8">  The official HEX flasher does </span><span style="color:#F97583">not</span><span style="color:#E1E4E8"> support reading. Thus a RnD version is needed </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> that.</span></span>
+<span class="line"><span style="color:#E1E4E8">  Reads out the GPT of device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode emergency -configfile </span><span style="color:#9ECBFF">"8974_emergencyflash_config.xml"</span><span style="color:#E1E4E8"> -dumparea 0,34 -dumpfileforhexflasher </span><span style="color:#9ECBFF">"gpt.bin"</span></span></code></pre>
+<h3 id="rnd-mode-examples">Rnd mode examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">Read phone info:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -readphoneinfo</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Boot to the USB MSC mode:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -bootmsc -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  Note: PC will freeze, </span><span style="color:#F97583">if</span><span style="color:#E1E4E8"> SBL3 code is used and MSC code is missing from SBL3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Boot to the MMOS:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -bootmmos -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Boot to the Emergency Download mode:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -skip_gpt_check -boot_edmode</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Delete the GPT of device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -delgpt -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Execute DSS UEFI app tests:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -uefitests -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reboot the device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -reboot</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Power off the device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -power_off</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read public ID from the device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -read_public_id -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Chop up MBN image into files according to the GPT:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -mbnfile </span><span style="color:#9ECBFF">"8960_msimage_uefi.mbn"</span><span style="color:#E1E4E8"> -dump_mbn</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">Extract</span><span style="color:#E1E4E8"> ed payload image:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -edfile </span><span style="color:#9ECBFF">"ed_payload.ed"</span><span style="color:#E1E4E8"> -dump_edpayload</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Executes UEFI Keys provisioning procedure </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> RD:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -do_uefikeys_rd -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Executes UEFI Keys provisioning procedure </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> production:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -do_uefikeys_prod -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Executes RPMB provisioning procedure:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -do_rpmb -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Executes parsing of GPT:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -gptfile </span><span style="color:#9ECBFF">"gpt.mbn"</span><span style="color:#E1E4E8"> -dump_gpt -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Raw messaging. Disables messaging </span><span style="color:#F97583">timeout</span><span style="color:#E1E4E8"> (NOKD):</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -rawmsgreq 4e4f4b44 -rawmsgresp 4e4f4b44 -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Raw messaging. Hello (NOKI):</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -rawmsgreq 4e4f4b49 -rawmsgresp 4e4f4b49 -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Raw messaging. Reboot (NOKR):</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -rawmsgreq 4e4f4b52 -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ASCII messaging. Disables messaging timeout:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -asciimsgreq NOKD -asciimsgresp NOKD -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ASCII messaging. Hello:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -asciimsgreq NOKI -asciimsgresp NOKI -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ASCII messaging. Reboot:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -asciimsgreq NOKR -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads serial number of JTAG:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -readjtagserial -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads RPMB provisioning status:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -readrpmbstatus -skip_gpt_check</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads PSN:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -readpsn -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Sends JSON messages from JSON file to MMOS / </span><span style="color:#F97583">label</span><span style="color:#E1E4E8"> app:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -jsonfile </span><span style="color:#9ECBFF">"json_messages_file.json"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Sends JSON messages from JSON file to normal </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> / NCSd:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -jsonfile </span><span style="color:#9ECBFF">"json_messages_file.json -normalmode"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Device authentication:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -do_authentication -sdauthenticationtype production -skip_com_scan -skip_gpt_check [-server saisec001.europe.nokia.com] [-securesessionfile mysession.sessionid]</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads CID (manufactuter of eMMC):</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode rnd -readcid -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Validates SSD integrity:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2.exe -mode rnd -validatessdhash -skip_gpt_check</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Re-lock:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2.exe -mode rnd -relock -skip_gpt_check</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads ISSW version and compilation info:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2.exe -mode rnd -readisswversion -skip_gpt_check</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads status of reset protection:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2.exe -mode rnd -read_reset_protection_status -skip_gpt_check -skip_com_scan</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Removes secure boot configuration policy:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2.exe -mode rnd -remove_sbcp -skip_gpt_check -skip_com_scan</span></span></code></pre>
+<h3 id="ffureader-mode-examples">ffureader mode examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read FFU file and dump partitions into files according to the GPT:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode ffureader -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -dump_partitions</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read FFU file and dump partitions into files into defined directory according to the GPT:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode ffureader -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -dump_partitions -filedir c:\temp</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read FFU file and dump GPT(s) into files:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode ffureader -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -dump_gpt</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read the RKH from partition image file:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode ffureader -partitionimagefile </span><span style="color:#9ECBFF">"SBL1.mbn"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read FFU file and read Antitheft version:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode ffureader -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -read_antitheft_version</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read FFU file and check integrity:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode ffureader -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span></span></code></pre>
+<h3 id="dump-mode-examples">dump mode examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">Reads content of eMMC with UEFI flash app. Dumps whole eMMC based on the GPT:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode dump -uefifile </span><span style="color:#9ECBFF">"FlashApp_debug_dump.efi"</span><span style="color:#E1E4E8"> -dump_via_gpt</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads content of eMMC with UEFI flash app. Dumps eMMC based on the dumparea argument.</span></span>
+<span class="line"><span style="color:#E1E4E8">  The dump area is in sectors; first_sector_to_read,amount_of_sectors_to_read. Size of one sector is </span><span style="color:#79B8FF">512</span><span style="color:#E1E4E8"> bytes.</span></span>
+<span class="line"><span style="color:#E1E4E8">  Reads out the GPT of device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode dump -uefifile </span><span style="color:#9ECBFF">"FlashApp_debug_dump.efi"</span><span style="color:#9ECBFF"> "-dumparea 0,34"</span><span style="color:#E1E4E8"> -dump_via_sector</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads content of eMMC with UEFI flash app based on partitionname argument. Reads uefi partition image file from uefi partition:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode dump -uefifile </span><span style="color:#9ECBFF">"FlashApp_debug_dump.efi"</span><span style="color:#E1E4E8"> -dump_via_gpt -partitionname uefi</span></span></code></pre>
+<h3 id="retail-mode-examples">Retail mode examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"><span style="color:#E1E4E8">Erases partition based on name of partition. Erases Data partition:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode retail -erasepartition Data</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Reads the RDC from device into the file:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode retail -readrdc </span><span style="color:#9ECBFF">"rdc.bin"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Writes the RDC into the device from file:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode retail -writerdc </span><span style="color:#9ECBFF">"rdc.bin"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Erases the RDC from device:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode retail -eraserdc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Sends NVIs messages from nvi file to MMOS / </span><span style="color:#F97583">label</span><span style="color:#E1E4E8"> app:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode retail -nvifile </span><span style="color:#9ECBFF">"CustomerNvi.nvi"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Sends NVIs messages from nvi file to normal </span><span style="color:#F97583">mode</span><span style="color:#E1E4E8"> / NCSd:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode retail -nvifile </span><span style="color:#9ECBFF">"CustomerNvi.nvi -normalmode"</span></span></code></pre>
+<h3 id="misc-examples">misc examples</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="batch"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">VPL programming:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode vpl -vplfile </span><span style="color:#9ECBFF">"RM821_059R7J4_1232.5951.1249.1003_016.vpl"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">SD card programming:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode sdflash -sdfile </span><span style="color:#9ECBFF">"RM821_059R7J4_1232.5951.1249.1003_016.img"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Read USB connections and </span><span style="color:#F97583">print</span><span style="color:#E1E4E8"> the result:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode list_connections</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Programs the same FFU file into one or multible devices. User needs to </span><span style="color:#F97583">change</span><span style="color:#E1E4E8"> devices between programming states:</span></span>
+<span class="line"><span style="color:#E1E4E8">  thor2 -mode uefiserialflash -ffufile </span><span style="color:#9ECBFF">"RM821_Production_flash_rnd_signed.ffu"</span><span style="color:#E1E4E8"> -serialflash </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8"> -power_off</span></span></code></pre>
+<p>Copyright @ 2015 Microsoft Mobile</p>
+<p>Adapted to Markdown by @pinguin2001</p>
+</body></html>
